@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		297F4423504B459988650EA1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C07948A807E6491FA5D16D96 /* libPods.a */; };
 		9B694FFC1976D87A00689EF7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B694FFB1976D87A00689EF7 /* Foundation.framework */; };
 		9B694FFE1976D87A00689EF7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B694FFD1976D87A00689EF7 /* CoreGraphics.framework */; };
 		9B6950001976D87A00689EF7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B694FFF1976D87A00689EF7 /* UIKit.framework */; };
@@ -21,6 +22,8 @@
 		9B69501D1976D87A00689EF7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B694FFF1976D87A00689EF7 /* UIKit.framework */; };
 		9B6950251976D87A00689EF7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B6950231976D87A00689EF7 /* InfoPlist.strings */; };
 		9B6950271976D87A00689EF7 /* moneyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6950261976D87A00689EF7 /* moneyTests.m */; };
+		9B6950321976DC9D00689EF7 /* friendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6950311976DC9D00689EF7 /* friendsViewController.m */; };
+		9B6950351976DE5D00689EF7 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6950341976DE5D00689EF7 /* Friend.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5327A9F6669445319D250B17 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		9B694FF81976D87A00689EF7 /* money.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = money.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B694FFB1976D87A00689EF7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9B694FFD1976D87A00689EF7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +57,11 @@
 		9B6950221976D87A00689EF7 /* moneyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "moneyTests-Info.plist"; sourceTree = "<group>"; };
 		9B6950241976D87A00689EF7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9B6950261976D87A00689EF7 /* moneyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = moneyTests.m; sourceTree = "<group>"; };
+		9B6950301976DC9D00689EF7 /* friendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = friendsViewController.h; sourceTree = "<group>"; };
+		9B6950311976DC9D00689EF7 /* friendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = friendsViewController.m; sourceTree = "<group>"; };
+		9B6950331976DE5D00689EF7 /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
+		9B6950341976DE5D00689EF7 /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
+		C07948A807E6491FA5D16D96 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +72,7 @@
 				9B694FFE1976D87A00689EF7 /* CoreGraphics.framework in Frameworks */,
 				9B6950001976D87A00689EF7 /* UIKit.framework in Frameworks */,
 				9B694FFC1976D87A00689EF7 /* Foundation.framework in Frameworks */,
+				297F4423504B459988650EA1 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +96,7 @@
 				9B6950201976D87A00689EF7 /* moneyTests */,
 				9B694FFA1976D87A00689EF7 /* Frameworks */,
 				9B694FF91976D87A00689EF7 /* Products */,
+				5327A9F6669445319D250B17 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +116,7 @@
 				9B694FFD1976D87A00689EF7 /* CoreGraphics.framework */,
 				9B694FFF1976D87A00689EF7 /* UIKit.framework */,
 				9B69501A1976D87A00689EF7 /* XCTest.framework */,
+				C07948A807E6491FA5D16D96 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -115,6 +127,10 @@
 				9B69500A1976D87A00689EF7 /* moneyAppDelegate.h */,
 				9B69500B1976D87A00689EF7 /* moneyAppDelegate.m */,
 				9B69500D1976D87A00689EF7 /* Main.storyboard */,
+				9B6950301976DC9D00689EF7 /* friendsViewController.h */,
+				9B6950311976DC9D00689EF7 /* friendsViewController.m */,
+				9B6950331976DE5D00689EF7 /* Friend.h */,
+				9B6950341976DE5D00689EF7 /* Friend.m */,
 				9B6950101976D87A00689EF7 /* moneyViewController.h */,
 				9B6950111976D87A00689EF7 /* moneyViewController.m */,
 				9B6950131976D87A00689EF7 /* Images.xcassets */,
@@ -159,9 +175,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9B69502A1976D87A00689EF7 /* Build configuration list for PBXNativeTarget "money" */;
 			buildPhases = (
+				4225FF2D3B504656925E0EA3 /* Check Pods Manifest.lock */,
 				9B694FF41976D87900689EF7 /* Sources */,
 				9B694FF51976D87900689EF7 /* Frameworks */,
 				9B694FF61976D87900689EF7 /* Resources */,
+				D8D1F0666C9D4B309E2AD41A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -245,11 +263,46 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4225FF2D3B504656925E0EA3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D8D1F0666C9D4B309E2AD41A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9B694FF41976D87900689EF7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B6950321976DC9D00689EF7 /* friendsViewController.m in Sources */,
+				9B6950351976DE5D00689EF7 /* Friend.m in Sources */,
 				9B6950121976D87A00689EF7 /* moneyViewController.m in Sources */,
 				9B6950081976D87A00689EF7 /* main.m in Sources */,
 				9B69500C1976D87A00689EF7 /* moneyAppDelegate.m in Sources */,
@@ -374,6 +427,7 @@
 		};
 		9B69502B1976D87A00689EF7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5327A9F6669445319D250B17 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -387,6 +441,7 @@
 		};
 		9B69502C1976D87A00689EF7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5327A9F6669445319D250B17 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -457,6 +512,7 @@
 				9B69502C1976D87A00689EF7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9B69502D1976D87A00689EF7 /* Build configuration list for PBXNativeTarget "moneyTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +521,7 @@
 				9B69502F1976D87A00689EF7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

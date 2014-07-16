@@ -7,13 +7,35 @@
 //
 
 #import "moneyAppDelegate.h"
-
+#import <Venmo-iOS-SDK/Venmo.h>
 @implementation moneyAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [Venmo startWithAppId:@"1826" secret:@"AwzcVrXXEwWThtnk99WvbeZFFVY53Kzz" name:@"play"];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    if ([[Venmo sharedInstance] isSessionValid]) {
+        UIViewController *navController = [mainStoryboard instantiateViewControllerWithIdentifier:@"navVC"];
+        self.window.rootViewController = navController;
+    }
+    else {
+        UIViewController *loginVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"logInVC"];
+        self.window.rootViewController = loginVC;
+    }
+    
+
     // Override point for customization after application launch.
     return YES;
+}
+
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    if ([[Venmo sharedInstance] handleOpenURL:url]) {
+        return YES;
+    }
+    // You can add your app-specific url handling code here if needed
+    return NO;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

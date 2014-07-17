@@ -18,6 +18,11 @@
 @property(strong, nonatomic) NSMutableArray *leftFriends;
 @property(strong, nonatomic) NSMutableArray *rightFriends;
 @property(strong, nonatomic) NSMutableArray *middleFriends;
+@property CGFloat leftOffset;
+@property CGFloat middleOffset;
+@property CGFloat rightOffset;
+
+
 //@property (strong, nonato)
 
 @end
@@ -43,7 +48,6 @@
     self.rightFriends = [[NSMutableArray alloc] init];
     self.middleFriends = [[NSMutableArray alloc] init];
 
-
     [[[self getFriendsSignal]
       deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(NSArray * jsonFriendArray){
@@ -62,20 +66,58 @@
     _rightTable.dataSource = self;
     _middleTable.delegate = self;
     _middleTable.dataSource = self;
-    [[self rac_signalForSelector:@selector(scrollViewDidScroll:) fromProtocol:@protocol(UIScrollViewDelegate)] subscribeNext:^(id x){
-        UIScrollView * scrollView = (UIScrollView *)x;
-        //RACTuple * point = (RACTuple *)scrollView.contentOffset;
-        //CGFloat yvalue = point.y;
-       // NSLog([NSString stringWithFormat: @"%.2f", point]);
-        
+    self.leftOffset = self.leftTable.contentOffset.y;
+    self.middleOffset = self.middleTable.contentOffset.y;
+    self.rightOffset = self.rightTable.contentOffset.y;
+    [self.leftTable setShowsVerticalScrollIndicator:NO];
+    [self.middleTable setShowsVerticalScrollIndicator:NO];
+    [self.rightTable setShowsVerticalScrollIndicator:NO];
+    
+    RACSignal *scrollSignal = [self rac_signalForSelector:@selector(scrollViewDidScroll:) fromProtocol:@protocol(UIScrollViewDelegate)];
+    
+    [[scrollSignal throttle:.01]
+      subscribeNext:^(RACTuple * scrollTuple){
+        UIScrollView *scrollView = [scrollTuple first];
+        CGFloat scrollOffset = scrollView.contentOffset.y;
+        if(scrollView == self.leftTable){
+            NSNumber *pullOffset = @(scrollOffset);
+            NSString *offsetString = [pullOffset stringValue];
+            NSLog(offsetString);
+            CGFloat displacement = scrollOffset - self.leftOffset;
+            self.leftOffset = scrollOffset;
+            [self scrollOppositeDirectionWithTable:self.middleTable AndOffset:displacement];
+            [self scrollSameDirectionWithTable:self.rightTable AndOffset:displacement];
+        }
+        else if(scrollView == self.rightTable){
+            CGFloat displacement = scrollOffset - self.rightOffset;
+            self.rightOffset = scrollOffset;
+            [self scrollOppositeDirectionWithTable:self.middleTable AndOffset:displacement];
+            [self scrollSameDirectionWithTable:self.leftTable AndOffset:displacement];
+        }
+        else if (scrollView == self.middleTable){
+            CGFloat displacement = scrollOffset - self.middleOffset;
+            self.middleOffset = scrollOffset;
+            [self scrollOppositeDirectionWithTable:self.leftTable AndOffset:displacement];
+            [self scrollOppositeDirectionWithTable:self.rightTable AndOffset:displacement];
+        }
     }];
-//    [[self rac_signalForSelector:@selector(scrollViewWillEndDragging:withVelocity:targetContentOffset:) fromProtocol:@protocol(UIScrollViewDelegate)] subscribeNext:^(UIScrollView* x){
-//        
-//    }];
-    //[_leftTable rac_signalForSelector:scrollViewDidScroll fromProtocol:UIScrollViewDelegate];
-    //- (void)scrollToRowAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated
 
-    // Do any additional setup after loading the view.
+   
+}
+- (void)scrollOppositeDirectionWithTable:(UITableView *)table AndOffset:(CGFloat)offset
+{
+    CGFloat newPlacement = table.contentOffset.y-offset;
+    if((newPlacement>-3) && newPlacement < table.contentSize.height){
+        [table setContentOffset:CGPointMake(0, newPlacement) animated:NO];
+    }
+}
+
+- (void) scrollSameDirectionWithTable:(UITableView *)table AndOffset:(CGFloat)offset
+{
+    CGFloat newPlacement = table.contentOffset.y+offset;
+    if((newPlacement>-165) && newPlacement < table.contentSize.height){
+        [table setContentOffset:CGPointMake(0, newPlacement) animated:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,7 +131,6 @@
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
    if(tableView == self.leftTable){
-
     return [self.leftFriends count];
    }
    else if(tableView == self.rightTable){
@@ -110,25 +151,16 @@
     Friend *friend;
     if(tableView == self.leftTable){
         friend = [self.leftFriends objectAtIndex:indexPath.row];
-
     }
     else if (tableView == self.rightTable){
         friend = [self.rightFriends objectAtIndex:indexPath.row];
-
     }
     else{
         friend = [self.middleFriends objectAtIndex:indexPath.row];
-
-    
-     if(tableView == self.leftTable){
-        if(self.leftTable.tracking){
-            NSLog(@"dragging!");
-        }
-      }
     }
-    cell.textLabel.text = friend.firstName;
+    cell.textLabel.text = friend.emoji;
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
     return cell;
-    
 }
 
 
@@ -151,30 +183,9 @@
     }];
 }
 
--(UIScrollView *) scrollViewDidScroll:(UIScrollView *)scrollView
+-(void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if(scrollView == self.leftTable){
-        NSLog(@"LEFFTTTTin scroll view did scroll!");
-        //scrollView.contentOffset.y
 
-    }
-    else{
-        NSLog(@"in scroll view did scroll!");
-
-    }
-//    RACSignal *scrollSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-//        [subscriber sendNext:scrollView];
-//        NSLog(@"jksdlkjfadsjklfdasjklfsadjklfdsjklfdasjklfdsakl;fdsl;fdsjkl");
-//        return nil;
-//    }];
-    return scrollView;
-    
-
-}
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
-{
-    NSLog(@"%@", scrollView.contentOffset.y > targetContentOffset->y ? @"top" : @"bottom");
-    NSLog(@"%@", velocity.y > 0 ? @"bottom" : @"top");
 }
 
 - (void)divideFriends:(NSArray *)friends

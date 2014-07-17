@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		297F4423504B459988650EA1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C07948A807E6491FA5D16D96 /* libPods.a */; };
+		9B31F93B19788BED006AF021 /* moneyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B31F93A19788BED006AF021 /* moneyTableViewCell.m */; };
 		9B694FFC1976D87A00689EF7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B694FFB1976D87A00689EF7 /* Foundation.framework */; };
 		9B694FFE1976D87A00689EF7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B694FFD1976D87A00689EF7 /* CoreGraphics.framework */; };
 		9B6950001976D87A00689EF7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B694FFF1976D87A00689EF7 /* UIKit.framework */; };
@@ -38,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		5327A9F6669445319D250B17 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		9B31F93919788BED006AF021 /* moneyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = moneyTableViewCell.h; sourceTree = "<group>"; };
+		9B31F93A19788BED006AF021 /* moneyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = moneyTableViewCell.m; sourceTree = "<group>"; };
 		9B694FF81976D87A00689EF7 /* money.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = money.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B694FFB1976D87A00689EF7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9B694FFD1976D87A00689EF7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -127,6 +130,8 @@
 				9B69500A1976D87A00689EF7 /* moneyAppDelegate.h */,
 				9B69500B1976D87A00689EF7 /* moneyAppDelegate.m */,
 				9B69500D1976D87A00689EF7 /* Main.storyboard */,
+				9B31F93919788BED006AF021 /* moneyTableViewCell.h */,
+				9B31F93A19788BED006AF021 /* moneyTableViewCell.m */,
 				9B6950301976DC9D00689EF7 /* friendsViewController.h */,
 				9B6950311976DC9D00689EF7 /* friendsViewController.m */,
 				9B6950331976DE5D00689EF7 /* Friend.h */,
@@ -303,6 +308,7 @@
 			files = (
 				9B6950321976DC9D00689EF7 /* friendsViewController.m in Sources */,
 				9B6950351976DE5D00689EF7 /* Friend.m in Sources */,
+				9B31F93B19788BED006AF021 /* moneyTableViewCell.m in Sources */,
 				9B6950121976D87A00689EF7 /* moneyViewController.m in Sources */,
 				9B6950081976D87A00689EF7 /* main.m in Sources */,
 				9B69500C1976D87A00689EF7 /* moneyAppDelegate.m in Sources */,

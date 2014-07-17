@@ -12,6 +12,7 @@
 #import "Friend.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "NSArray+LinqExtensions.h"
+#import "moneyTableViewCell.h"
 
 @interface friendsViewController ()
 @property (strong, nonatomic) NSArray *allFriends;
@@ -74,17 +75,14 @@
     [self.rightTable setShowsVerticalScrollIndicator:NO];
     
     RACSignal *scrollSignal = [self rac_signalForSelector:@selector(scrollViewDidScroll:) fromProtocol:@protocol(UIScrollViewDelegate)];
-    
     [[scrollSignal throttle:.01]
       subscribeNext:^(RACTuple * scrollTuple){
         UIScrollView *scrollView = [scrollTuple first];
         CGFloat scrollOffset = scrollView.contentOffset.y;
         if(scrollView == self.leftTable){
-            NSNumber *pullOffset = @(scrollOffset);
-            NSString *offsetString = [pullOffset stringValue];
-            NSLog(offsetString);
             CGFloat displacement = scrollOffset - self.leftOffset;
             self.leftOffset = scrollOffset;
+            // try RAC() to set content offset
             [self scrollOppositeDirectionWithTable:self.middleTable AndOffset:displacement];
             [self scrollSameDirectionWithTable:self.rightTable AndOffset:displacement];
         }
@@ -143,11 +141,11 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"friendCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
+    static NSString *cellIdentifier = @"emojiCell";
+    moneyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//    if(cell == nil){
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+//    }
     Friend *friend;
     if(tableView == self.leftTable){
         friend = [self.leftFriends objectAtIndex:indexPath.row];
@@ -158,8 +156,10 @@
     else{
         friend = [self.middleFriends objectAtIndex:indexPath.row];
     }
-    cell.textLabel.text = friend.emoji;
-    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    cell.emojiLabel.text = friend.emoji;
+    cell.emojiLabel.textAlignment = NSTextAlignmentCenter;
+    cell.firstNameLabel.text = friend.firstName;
+    cell.lastNameLabel.text = friend.lastName;
     return cell;
 }
 
@@ -205,8 +205,8 @@
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.leftTable reloadData];
-        [self.rightTable reloadData];
-        [self.middleTable reloadData];
+        //[self.rightTable reloadData];
+        //[self.middleTable reloadData];
     });
 }
 

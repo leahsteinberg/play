@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface moneyTableViewCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *emojiLabel;
-@property (weak, nonatomic) IBOutlet UILabel *firstNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *lastNameLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @end

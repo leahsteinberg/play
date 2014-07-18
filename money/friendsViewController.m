@@ -13,6 +13,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "NSArray+LinqExtensions.h"
 #import "moneyTableViewCell.h"
+#import "paymentViewController.h"
 
 @interface friendsViewController ()
 @property (strong, nonatomic) NSArray *allFriends;
@@ -73,6 +74,7 @@
     [self.leftTable setShowsVerticalScrollIndicator:NO];
     [self.middleTable setShowsVerticalScrollIndicator:NO];
     [self.rightTable setShowsVerticalScrollIndicator:NO];
+
     
     RACSignal *scrollSignal = [self rac_signalForSelector:@selector(scrollViewDidScroll:) fromProtocol:@protocol(UIScrollViewDelegate)];
     [[scrollSignal throttle:.01]
@@ -141,11 +143,12 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"emojiCell";
+    static NSString *cellIdentifier = @"theemojiCell";
     moneyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//    if(cell == nil){
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-//    }
+    if(cell == nil){
+        [tableView registerNib:[UINib nibWithNibName:@"moneyCellView" bundle:nil] forCellReuseIdentifier:cellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    }
     Friend *friend;
     if(tableView == self.leftTable){
         friend = [self.leftFriends objectAtIndex:indexPath.row];
@@ -158,11 +161,34 @@
     }
     cell.emojiLabel.text = friend.emoji;
     cell.emojiLabel.textAlignment = NSTextAlignmentCenter;
-    cell.firstNameLabel.text = friend.firstName;
-    cell.lastNameLabel.text = friend.lastName;
+    cell.nameLabel.text = friend.displayName;
+    cell.nameLabel.textAlignment = NSTextAlignmentCenter;
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Friend *target;
+    if(tableView == self.leftTable){
+        target = [self.leftFriends objectAtIndex:indexPath.row];
+    }
+    else if(tableView == self.middleTable){
+        target = [self.middleFriends objectAtIndex:indexPath.row];
+    }
+    else if(tableView == self.rightTable){
+        target = [self.rightFriends objectAtIndex:indexPath.row];
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    [self performSegueWithIdentifier:@"paymentViewSegue" sender:target];
+}
+
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"paymentViewSegue"]){
+        paymentViewController *destViewController = segue.destinationViewController;
+        destViewController.friend = sender;
+    }
+}
 
 #pragma mark - RAC methods
 
@@ -194,19 +220,26 @@
     NSUInteger count = [self.allFriends count];
     for (NSUInteger i =0; i<[self.allFriends count]; i++){
         if(i< count/3){
+            NSLog(@"left %d", i);
+
             [self.leftFriends addObject:[self.allFriends objectAtIndex:i]];
         }
-        else if(i> count/3 && i<((count/3)*2)){
+        else if(i>= count/3 && i<((count/3)*2)){
+            NSLog(@"middle %d", i);
             [self.middleFriends addObject:[self.allFriends objectAtIndex:i]];
         }
         else{
+            NSLog(@"right %d", i);
+
             [self.rightFriends addObject:[self.allFriends objectAtIndex:i]];
         }
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.leftTable reloadData];
-        //[self.rightTable reloadData];
-        //[self.middleTable reloadData];
+        [self.rightTable reloadData];
+        [self.middleTable reloadData];
+        CGPoint bottomOffset = CGPointMake(0, self.middleTable.contentSize.height - self.middleTable.bounds.size.height);
+        [self.middleTable setContentOffset:bottomOffset animated:NO];
     });
 }
 

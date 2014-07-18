@@ -35,6 +35,36 @@
             </objects>
             <point key="canvasLocation" x="153" y="-3"/>
         </scene>
+        <!--Payment View Controller-->
+        <scene sceneID="uKb-Qd-sNH">
+            <objects>
+                <viewController storyboardIdentifier="paymentVC" id="O2m-kL-yds" customClass="paymentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ELC-2R-OeF"/>
+                        <viewControllerLayoutGuide type="bottom" id="kvS-iV-elD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SKG-11-F3h">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hiiiiii" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9OV-Np-DjW">
+                                <rect key="frame" x="7" y="47" width="293" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="e4L-fo-tbY"/>
+                    <connections>
+                        <outlet property="mainLabel" destination="9OV-Np-DjW" id="AFP-dU-289"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nhz-aM-hkv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1405" y="-3"/>
+        </scene>
         <!--Friends View Controller-->
         <scene sceneID="wFE-7Z-cVT">
             <objects>
@@ -58,42 +88,6 @@
                                 <rect key="frame" x="0.0" y="66" width="105" height="394"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="emojiCell" id="b6H-pg-wSx" customClass="moneyTableViewCell">
-                                        <rect key="frame" x="0.0" y="22" width="105" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b6H-pg-wSx" id="uNk-Zp-NEU">
-                                            <rect key="frame" x="0.0" y="0.0" width="105" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="emoji" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MiN-aD-LLA">
-                                                    <rect key="frame" x="31" y="2" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PoY-vg-n8a">
-                                                    <rect key="frame" x="6" y="20" width="34" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufE-gI-v4f">
-                                                    <rect key="frame" x="48" y="20" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="emojiLabel" destination="MiN-aD-LLA" id="scs-VK-K6r"/>
-                                            <outlet property="firstNameLabel" destination="PoY-vg-n8a" id="K8W-eY-zLt"/>
-                                            <outlet property="lastNameLabel" destination="ufE-gI-v4f" id="oel-a5-yMg"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HsQ-S0-foZ">
                                 <rect key="frame" x="215" y="66" width="105" height="394"/>
@@ -113,11 +107,12 @@
                         <outlet property="leftTable" destination="4Jg-wm-UrJ" id="scU-nj-nS2"/>
                         <outlet property="middleTable" destination="5Gy-6p-cLw" id="5dk-FU-9Hg"/>
                         <outlet property="rightTable" destination="HsQ-S0-foZ" id="So4-Dx-par"/>
+                        <segue destination="O2m-kL-yds" kind="push" identifier="paymentViewSegue" id="tj3-zl-n4L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kKE-Sd-xeA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1149" y="-3"/>
+            <point key="canvasLocation" x="993" y="-3"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MGq-3d-lHY">
